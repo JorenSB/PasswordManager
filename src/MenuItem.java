@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Comparator;
 
 abstract class MenuItem {
     private String name;
@@ -9,13 +11,27 @@ abstract class MenuItem {
         return name;
     }
 }
-class PasswordsMenuItem extends MenuItem{
+class PasswordsMenuItem extends MenuItem {
     public PasswordsMenuItem(String name) {
         super(name);
     }
     @Override
     public void Execute() {
-
+        PassMenu pmenu = new PassMenu();
+        pmenu.StartMenu();
+    }
+}
+class PasswordItem extends MenuItem {
+    private String passName;
+    private String passUsername;
+    private String passPass;
+    private String passUrl;
+    public PasswordItem(String name, String passUsername, String passPass, String passUrl) {
+        super(name);
+        this.passName = name;
+        this.passUsername = passUsername;
+        this.passPass = passPass;
+        this.passUrl = passUrl;
     }
 }
 class PasswordAddMenuItem extends MenuItem {
@@ -33,6 +49,7 @@ class ExitItem extends MenuItem {
     }
     @Override
     public void Execute() {
+        Connector.WritePasswords(Main.passwords);
         System.exit(0);
     }
 }
@@ -53,7 +70,7 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     @Override
     public void Execute() {
         System.out.println("Length of password?");
-        System.out.println(PasswordGenerator.generatePassword(Input.GetIntInput(256)));
+        System.out.println(PasswordGenerator.generatePassword(Connector.GetIntInput(256)));
         MainMenu mmenu = new MainMenu();
         mmenu.StartMenu();
     }

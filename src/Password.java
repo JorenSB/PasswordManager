@@ -2,11 +2,17 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class Password implements Serializable {
+public class Password implements Serializable{
+    private String name;
     private String username;
     private String password;
     private String url;
-
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getUsername() {
         return username;
     }
@@ -31,7 +37,8 @@ public class Password implements Serializable {
         this.url = url;
     }
 
-    public Password(String username, String password, String url) {
+    public Password(String name, String username, String password, String url) {
+        this.name = name;
         this.username = username;
         this.password = password;
         this.url = url;
