@@ -1,3 +1,4 @@
+
 abstract class MenuItem {
     private String name;
     public MenuItem(String name) {
@@ -35,16 +36,6 @@ class ExitItem extends MenuItem {
         System.exit(0);
     }
 }
-class GenerateMenuItem extends MenuItem {
-    public GenerateMenuItem(String name) {
-        super(name);
-    }
-    @Override
-    public void Execute() {
-        GenerateMenu gmenu = new GenerateMenu();
-        gmenu.StartMenu();
-    }
-}
 class MainMenuItem extends MenuItem {
     public MainMenuItem(String name) {
         super(name);
@@ -63,7 +54,7 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     public void Execute() {
         System.out.println("Length of password?");
         System.out.println(PasswordGenerator.generatePassword(Input.GetIntInput(256)));
-        GenerateMenu gmenu = new GenerateMenu();
-        gmenu.StartMenu();
+        MainMenu mmenu = new MainMenu();
+        mmenu.StartMenu();
     }
 }

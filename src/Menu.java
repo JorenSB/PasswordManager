@@ -19,15 +19,8 @@ class MainMenu extends Menu {
     public void StartMenu() {
         items.add(new PasswordsMenuItem("View passwords"));
         items.add(new PasswordAddMenuItem("Add a password"));
-        items.add(new GenerateMenuItem("Generate password"));
+        items.add(new GeneratePasswordWithLengthItem("Generate password"));
         items.add(new ExitItem("Exit"));
-        PrintMenu();
-    }
-}
-class GenerateMenu extends Menu {
-    public void StartMenu() {
-        items.add(new GeneratePasswordWithLengthItem("Generate a password"));
-        items.add(new MainMenuItem("Main Menu"));
         PrintMenu();
     }
 }
