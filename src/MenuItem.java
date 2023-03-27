@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
-abstract class MenuItem {
+abstract class MenuItem implements MenuAble{
     private String name;
     public MenuItem(String name) {
         this.name = name;
     }
-    public void Execute() {}
     public String getName() {
         return name;
     }
@@ -19,19 +18,6 @@ class PasswordsMenuItem extends MenuItem {
     public void Execute() {
         PassMenu pmenu = new PassMenu();
         pmenu.StartMenu();
-    }
-}
-class PasswordItem extends MenuItem {
-    private String passName;
-    private String passUsername;
-    private String passPass;
-    private String passUrl;
-    public PasswordItem(String name, String passUsername, String passPass, String passUrl) {
-        super(name);
-        this.passName = name;
-        this.passUsername = passUsername;
-        this.passPass = passPass;
-        this.passUrl = passUrl;
     }
 }
 class PasswordAddMenuItem extends MenuItem {

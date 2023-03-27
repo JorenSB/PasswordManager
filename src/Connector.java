@@ -42,11 +42,15 @@ class Connector {
         ArrayList<Password> passwords = null;
         try {
             FileInputStream fis = new FileInputStream(filename);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            passwords = (ArrayList<Password>) ois.readObject();
-            ois.close();
+            if (fis.available() > 0) {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                passwords = (ArrayList<Password>) ois.readObject();
+                ois.close();
+            }
+            fis.close();
         } catch (Exception e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
         return passwords;
     }
 }
