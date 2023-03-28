@@ -1,8 +1,4 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-
+import java.io.Serializable;
 public class Password implements MenuAble, Serializable {
     private String name;
     private String username;

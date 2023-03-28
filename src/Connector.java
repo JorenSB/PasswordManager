@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 class Connector {
     public static ArrayList<Password> passwords;
     public static void StartArrayList() {
@@ -48,7 +47,6 @@ class Connector {
         return input;
     }
     static File filename = new File("data.txt");
-
     public static void WritePasswords(ArrayList<Password> passwords) {
         try {
             FileOutputStream fos = new FileOutputStream(filename);
@@ -60,7 +58,6 @@ class Connector {
             e.printStackTrace();
         }
     }
-
     public static ArrayList<Password> GetPasswords() {
         ArrayList<Password> passwords = null;
         try {

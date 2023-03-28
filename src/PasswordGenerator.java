@@ -1,5 +1,4 @@
 import java.util.Random;
-
 public class PasswordGenerator {
     public static String generatePassword(int maxLength) {
         String allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
@@ -12,4 +11,3 @@ public class PasswordGenerator {
         return password.toString();
     }
 }
-

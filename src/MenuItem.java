@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 abstract class MenuItem implements MenuAble{
     private final String name;
     public MenuItem(String name) {
