@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Password implements MenuAble, Serializable {
@@ -37,8 +38,12 @@ public class Password implements MenuAble, Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+    public void removePass() {
+        Main.passwords.removeIf(password -> password.equals(this));
+    }
     @Override
     public void Execute() {
-
+        PassView pview = new PassView();
+        pview.StartMenu(this);
     }
 }

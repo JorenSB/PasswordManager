@@ -24,6 +24,20 @@ class Connector {
         }
         return input;
     }
+    public static String GetStringInput() {
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+        boolean validInput = false;
+        while (!validInput) {
+            input = sc.nextLine();
+            if (!input.isEmpty()) {
+                validInput = true;
+            } else {
+                System.out.println("Invalid input. Please enter a valid string.");
+            }
+        }
+        return input;
+    }
     private static final File filename = new File("data.txt");
 
     public static void WritePasswords(ArrayList<Password> passwords) {

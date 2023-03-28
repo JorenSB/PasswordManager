@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.sql.SQLOutput;
 
 abstract class MenuItem implements MenuAble{
     private String name;
@@ -26,7 +25,25 @@ class PasswordAddMenuItem extends MenuItem {
     }
     @Override
     public void Execute() {
-
+        String name;
+        String username;
+        String password;
+        String url;
+        System.out.println("Name: ");
+        name = Connector.GetStringInput();
+        System.out.println("Username: ");
+        username = Connector.GetStringInput();
+        System.out.println("Password: (Type \"1\" to generate a password)");
+        password = Connector.GetStringInput();
+        if (password.equals("1")) {
+            System.out.println("Length of password?");
+            password = PasswordGenerator.generatePassword(Connector.GetIntInput(256));
+        }
+        System.out.println("Url: ");
+        url = Connector.GetStringInput();
+        Main.passwords.add(new Password(name, username, password, url));
+        MainMenu mmenu = new MainMenu();
+        mmenu.StartMenu();
     }
 }
 class ExitItem extends MenuItem {
@@ -59,5 +76,18 @@ class GeneratePasswordWithLengthItem extends MenuItem {
         System.out.println(PasswordGenerator.generatePassword(Connector.GetIntInput(256)));
         MainMenu mmenu = new MainMenu();
         mmenu.StartMenu();
+    }
+}
+class DeletePasswordItem extends MenuItem {
+    private Password password;
+    public DeletePasswordItem(String name, Password password) {
+        super(name);
+        this.password = password;
+    }
+    @Override
+    public void Execute() {
+        password.removePass();
+        PassMenu pmenu = new PassMenu();
+        pmenu.StartMenu();
     }
 }

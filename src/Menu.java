@@ -39,3 +39,13 @@ class PassMenu extends Menu {
         PrintMenu();
     }
 }
+class PassView extends Menu {
+    public void StartMenu(Password p) {
+        System.out.printf("%s\n%s\n%s\n%s\n", p.getName(), p.getUsername(), p.getPassword(), p.getUrl());
+        items.add(new DeletePasswordItem("Delete Password", p));
+        items.add(new PasswordsMenuItem("View passwords"));
+        items.add(new MainMenuItem("Main Menu"));
+        items.add(new ExitItem("Exit"));
+        PrintMenu();
+    }
+}
