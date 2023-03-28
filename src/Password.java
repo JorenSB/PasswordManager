@@ -39,10 +39,10 @@ public class Password implements MenuAble, Serializable {
         this.url = url;
     }
     public void removePass() {
-        Main.passwords.removeIf(password -> password.equals(this));
+        Connector.passwords.removeIf(password -> password.equals(this));
     }
     public static void addPass(Password pass) {
-        Main.passwords.add(pass);
+        Connector.passwords.add(pass);
     }
     @Override
     public void Execute() {

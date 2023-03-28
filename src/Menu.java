@@ -26,10 +26,10 @@ class MainMenu extends Menu {
 }
 class PassMenu extends Menu {
     public void StartMenu() {
-        if (Main.passwords != null && Main.passwords.size() > 0) {
+        if (Connector.passwords != null && Connector.passwords.size() > 0) {
             System.out.println("Saved Passwords:");
-            Main.passwords.sort(Comparator.comparing(Password::getName));
-            items.addAll(Main.passwords);
+            Connector.passwords.sort(Comparator.comparing(Password::getName));
+            items.addAll(Connector.passwords);
         }
         else {
             System.out.println("No Passwords Saved.");

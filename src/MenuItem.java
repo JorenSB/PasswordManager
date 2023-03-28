@@ -50,7 +50,7 @@ class ExitItem extends MenuItem {
     }
     @Override
     public void Execute() {
-        Connector.WritePasswords(Main.passwords);
+        Connector.WritePasswords(Connector.passwords);
     }
 }
 class MainMenuItem extends MenuItem {

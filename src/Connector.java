@@ -3,12 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Connector {
+    public static ArrayList<Password> passwords;
     public static void StartArrayList() {
         if (Connector.GetPasswords() == null) {
-            Main.passwords = new ArrayList<>();
+            passwords = new ArrayList<>();
         }
         else {
-            Main.passwords = new ArrayList<>(Connector.GetPasswords());
+            passwords = new ArrayList<>(Connector.GetPasswords());
         }
     }
     public static int GetIntInput(int size) {
@@ -46,7 +47,7 @@ class Connector {
         }
         return input;
     }
-    private static final File filename = new File("data.txt");
+    static File filename = new File("data.txt");
 
     public static void WritePasswords(ArrayList<Password> passwords) {
         try {
