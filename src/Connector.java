@@ -3,6 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Connector {
+    public static void StartArrayList() {
+        if (Connector.GetPasswords() == null) {
+            Main.passwords = new ArrayList<>();
+        }
+        else {
+            Main.passwords = new ArrayList<>(Connector.GetPasswords());
+        }
+    }
     public static int GetIntInput(int size) {
         Scanner sc = new Scanner(System.in);
         int input = 0;

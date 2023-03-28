@@ -41,9 +41,11 @@ public class Password implements MenuAble, Serializable {
     public void removePass() {
         Main.passwords.removeIf(password -> password.equals(this));
     }
+    public static void addPass(Password pass) {
+        Main.passwords.add(pass);
+    }
     @Override
     public void Execute() {
-        PassView pview = new PassView();
-        pview.StartMenu(this);
+        new PassView().StartMenu(this);
     }
 }

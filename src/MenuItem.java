@@ -1,7 +1,7 @@
 import java.sql.SQLOutput;
 
 abstract class MenuItem implements MenuAble{
-    private String name;
+    private final String name;
     public MenuItem(String name) {
         this.name = name;
     }
@@ -15,8 +15,7 @@ class PasswordsMenuItem extends MenuItem {
     }
     @Override
     public void Execute() {
-        PassMenu pmenu = new PassMenu();
-        pmenu.StartMenu();
+        new PassMenu().StartMenu();
     }
 }
 class PasswordAddMenuItem extends MenuItem {
@@ -41,9 +40,8 @@ class PasswordAddMenuItem extends MenuItem {
         }
         System.out.println("Url: ");
         url = Connector.GetStringInput();
-        Main.passwords.add(new Password(name, username, password, url));
-        MainMenu mmenu = new MainMenu();
-        mmenu.StartMenu();
+        Password.addPass(new Password(name, username, password, url));
+        new MainMenu().StartMenu();
     }
 }
 class ExitItem extends MenuItem {
@@ -53,7 +51,6 @@ class ExitItem extends MenuItem {
     @Override
     public void Execute() {
         Connector.WritePasswords(Main.passwords);
-        System.exit(0);
     }
 }
 class MainMenuItem extends MenuItem {
@@ -62,8 +59,7 @@ class MainMenuItem extends MenuItem {
     }
     @Override
     public void Execute() {
-        MainMenu mmenu = new MainMenu();
-        mmenu.StartMenu();
+        new MainMenu().StartMenu();
     }
 }
 class GeneratePasswordWithLengthItem extends MenuItem {
@@ -74,12 +70,11 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     public void Execute() {
         System.out.println("Length of password?");
         System.out.println(PasswordGenerator.generatePassword(Connector.GetIntInput(256)));
-        MainMenu mmenu = new MainMenu();
-        mmenu.StartMenu();
+        new MainMenu().StartMenu();
     }
 }
 class DeletePasswordItem extends MenuItem {
-    private Password password;
+    private final Password password;
     public DeletePasswordItem(String name, Password password) {
         super(name);
         this.password = password;
@@ -87,7 +82,6 @@ class DeletePasswordItem extends MenuItem {
     @Override
     public void Execute() {
         password.removePass();
-        PassMenu pmenu = new PassMenu();
-        pmenu.StartMenu();
+        new PassMenu().StartMenu();
     }
 }
