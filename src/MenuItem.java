@@ -1,4 +1,4 @@
-abstract class MenuItem implements MenuAble{
+abstract class MenuItem implements MenuAble {
     private final String name;
     public MenuItem(String name) {
         this.name = name;
@@ -12,8 +12,8 @@ class PasswordsMenuItem extends MenuItem {
         super(name);
     }
     @Override
-    public void Execute() {
-        new PassMenu().StartMenu();
+    public void execute() {
+        new PassMenu().startMenu();
     }
 }
 class PasswordAddMenuItem extends MenuItem {
@@ -21,25 +21,22 @@ class PasswordAddMenuItem extends MenuItem {
         super(name);
     }
     @Override
-    public void Execute() {
-        String name;
-        String username;
-        String password;
-        String url;
+    public void execute() {
         System.out.println("Name: ");
-        name = Connector.GetStringInput();
+        String name = Connector.getStringInput();
         System.out.println("Username: ");
-        username = Connector.GetStringInput();
+        String username = Connector.getStringInput();
         System.out.println("Password: (Type \"1\" to generate a password)");
-        password = Connector.GetStringInput();
+        String password = Connector.getStringInput();
         if (password.equals("1")) {
             System.out.println("Length of password?");
-            password = PasswordGenerator.generatePassword(Connector.GetIntInput(256));
+            password = PasswordGenerator.generatePassword(Connector.getIntInput(256));
         }
         System.out.println("Url: ");
-        url = Connector.GetStringInput();
-        Password.addPass(new Password(name, username, password, url));
-        new MainMenu().StartMenu();
+        String url = Connector.getStringInput();
+        Password pass = new Password(name, username, password, url);
+        pass.addPass();
+        new MainMenu().startMenu();
     }
 }
 class ExitItem extends MenuItem {
@@ -47,8 +44,8 @@ class ExitItem extends MenuItem {
         super(name);
     }
     @Override
-    public void Execute() {
-        Connector.WritePasswords(Connector.passwords);
+    public void execute() {
+        Connector.writePasswords(Connector.passwords);
     }
 }
 class MainMenuItem extends MenuItem {
@@ -56,8 +53,8 @@ class MainMenuItem extends MenuItem {
         super(name);
     }
     @Override
-    public void Execute() {
-        new MainMenu().StartMenu();
+    public void execute() {
+        new MainMenu().startMenu();
     }
 }
 class GeneratePasswordWithLengthItem extends MenuItem {
@@ -65,10 +62,10 @@ class GeneratePasswordWithLengthItem extends MenuItem {
         super(name);
     }
     @Override
-    public void Execute() {
+    public void execute() {
         System.out.println("Length of password?");
-        System.out.println(PasswordGenerator.generatePassword(Connector.GetIntInput(256)));
-        new MainMenu().StartMenu();
+        System.out.println(PasswordGenerator.generatePassword(Connector.getIntInput(256)));
+        new MainMenu().startMenu();
     }
 }
 class DeletePasswordItem extends MenuItem {
@@ -78,8 +75,8 @@ class DeletePasswordItem extends MenuItem {
         this.password = password;
     }
     @Override
-    public void Execute() {
+    public void execute() {
         password.removePass();
-        new PassMenu().StartMenu();
+        new PassMenu().startMenu();
     }
 }

@@ -37,11 +37,11 @@ public class Password implements MenuAble, Serializable {
     public void removePass() {
         Connector.passwords.removeIf(password -> password.equals(this));
     }
-    public static void addPass(Password pass) {
-        Connector.passwords.add(pass);
+    public void addPass() {
+        Connector.passwords.add(this);
     }
     @Override
-    public void Execute() {
-        new PassView().StartMenu(this);
+    public void execute() {
+        new PassView().startMenu(this);
     }
 }

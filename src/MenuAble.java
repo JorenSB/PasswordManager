@@ -1,4 +1,4 @@
 public interface MenuAble {
-    void Execute();
+    void execute();
     String getName();
 }
