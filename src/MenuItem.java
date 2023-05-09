@@ -80,3 +80,20 @@ class DeletePasswordItem extends MenuItem {
         new PassMenu().startMenu();
     }
 }
+class AnalyzePasswordItem extends MenuItem{
+    Password pass;
+    public AnalyzePasswordItem(String name, Password pass) {
+        super(name);
+        this.pass = pass;
+    }
+    @Override
+    public void execute() {
+        System.out.println(new AnalyzePassword().checkPass(pass.getPassword()));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            System.out.println(e.toString());
+        }
+        new PassView().startMenu(pass);
+    }
+}
