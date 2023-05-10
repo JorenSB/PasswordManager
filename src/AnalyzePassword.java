@@ -1,23 +1,34 @@
 public class AnalyzePassword {
     public AnalyzePassword() {}
-    public String checkPass(String pass) {
-        int aantalCapsVoorGoed = 4;
-        int aantalCapsVoorVoldoende = 1;
-        int aantalSpecialCharsVoorGoed = 4;
-        int aantalSpecialCharsVoorVoldoende = 1;
-        int aantalNummersVoorGoed = 4;
-        int aantalNummersVoorVoldoende = 1;
-        int aantalCharsVoorGoed = 15;
-        int aantalCharsVoorVoldoende = 8;
-        if (countCaps(pass) >= aantalCapsVoorGoed && countNumbers(pass) >= aantalNummersVoorGoed &&
-                countSpecialChars(pass) >= aantalSpecialCharsVoorGoed && checkLength(pass) >= aantalCharsVoorGoed) {
+    public String checkPassAdvanced(String pass) {
+        int amountOfCapsForGood = 3;
+        int amountOfCapsForOkay = 1;
+        int amountOfNumsForGood = 3;
+        int amountOfNumsForOkay = 1;
+        int amountOfSpecialCharsForGood = 3;
+        int amountOfSpecialCharsForOkay = 1;
+        int amountOfCharsForGood = 15;
+        int amountOfCharsForOkay = 8;
+        if (countCaps(pass) >= amountOfCapsForGood && countNums(pass) >= amountOfNumsForGood || countSpecialChars(pass) > amountOfSpecialCharsForGood && pass.length() >= amountOfCharsForGood) {
             return "Uw wachtwoord is goed :)";
-        }
-        else if (countCaps(pass) >= aantalCapsVoorVoldoende && countNumbers(pass) >= aantalNummersVoorVoldoende &&
-                countSpecialChars(pass) >= aantalSpecialCharsVoorVoldoende && checkLength(pass) >= aantalCharsVoorVoldoende) {
+        } else if (countCaps(pass) >= amountOfCapsForOkay && countNums(pass) >= amountOfNumsForOkay || countSpecialChars(pass) > amountOfSpecialCharsForOkay && pass.length() >= amountOfCharsForOkay) {
             return "Uw wachtwoord is voldoende.";
+        } else {
+            return "Uw wachtwoord is slecht :(";
         }
-        else {
+    }
+    public String checkPass(String pass) {
+        int amountOfCapsForGood = 3;
+        int amountOfCapsForOkay = 1;
+        int amountOfNumsAndSpecialCharsForGood = 3;
+        int amountOfNumsAndSpecialCharsForOkay = 1;
+        int amountOfCharsForGood = 15;
+        int amountOfCharsForOkay = 8;
+        if (countCaps(pass) >= amountOfCapsForGood && countNonLetterChars(pass) >= amountOfNumsAndSpecialCharsForGood && pass.length() >= amountOfCharsForGood) {
+            return "Uw wachtwoord is goed :)";
+        } else if (countCaps(pass) >= amountOfCapsForOkay && countNonLetterChars(pass) >= amountOfNumsAndSpecialCharsForOkay && pass.length() >= amountOfCharsForOkay) {
+            return "Uw wachtwoord is voldoende.";
+        } else {
             return "Uw wachtwoord is slecht :(";
         }
     }
@@ -30,8 +41,14 @@ public class AnalyzePassword {
         }
         return caps;
     }
-    public int checkLength(String pass) {
-        return pass.length();
+    public int countNums(String pass) {
+        int nums = 0;
+        for (int i = 0; i < pass.length(); i++) {
+            if (Character.isDigit(pass.charAt(i))) {
+                nums++;
+            }
+        }
+        return nums;
     }
     public int countSpecialChars(String pass) {
         int specialChars = 0;
@@ -42,13 +59,7 @@ public class AnalyzePassword {
         }
         return specialChars;
     }
-    public int countNumbers(String pass) {
-        int numbers = 0;
-        for (int i = 0; i < pass.length(); i++) {
-            if (Character.isDigit(pass.charAt(i))) {
-                numbers++;
-            }
-        }
-        return numbers;
+    public int countNonLetterChars(String pass) {
+        return countNums(pass) + countSpecialChars(pass);
     }
 }

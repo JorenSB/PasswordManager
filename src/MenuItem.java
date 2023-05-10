@@ -32,6 +32,7 @@ class PasswordAddMenuItem extends MenuItem {
             System.out.println("Length of password?");
             password = PasswordGenerator.generatePassword(Connector.getIntInput(256));
         }
+        System.out.println(new AnalyzePassword().checkPass(password));
         System.out.println("Url: ");
         String url = Connector.getStringInput();
         Password pass = new Password(name, username, password, url);
