@@ -115,5 +115,95 @@ class AnalyzePasswordTest {
         // Assert
         Assertions.assertEquals(expected, actual);
     }
-    //
+    // Pairwise Testing (PT)
+    @Test
+    public void checkPassWith0Caps0Nums0SpecialAndLength1() {
+        // Arrange
+        String pass = "a";
+        String expected = "Uw wachtwoord is slecht :(";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith0Caps1Nums1SpecialAndLength8() {
+        // Arrange
+        String pass = "abcdef1!";
+        String expected = "Uw wachtwoord is slecht :(";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith0Caps3Nums3SpecialAndLength15() {
+        // Arrange
+        String pass = "abcdefghi123!@#";
+        String expected = "Uw wachtwoord is slecht :(";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith1Caps1Nums3SpecialAndLength7() {
+        // Arrange
+        String pass = "Abc1!@#";
+        String expected = "Uw wachtwoord is slecht :(";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith1Caps3Nums0SpecialAndLength8() {
+        // Arrange
+        String pass = "Abcde123";
+        String expected = "Uw wachtwoord is voldoende.";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith1Caps0Nums1SpecialAndLength15() {
+        // Arrange
+        String pass = "Abcdefghijklmn!";
+        String expected = "Uw wachtwoord is voldoende.";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith3Caps3Nums1SpecialAndLength7() {
+        // Arrange
+        String pass = "ABC123!";
+        String expected = "Uw wachtwoord is slecht :(";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith3Caps0Nums3SpecialAndLength8() {
+        // Arrange
+        String pass = "ABCde!@#";
+        String expected = "Uw wachtwoord is voldoende.";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void checkPassWith3Caps1Nums0SpecialAndLength15() {
+        // Arrange
+        String pass = "ABCdefghijklmn1";
+        String expected = "Uw wachtwoord is voldoende.";
+        // Act
+        String actual = new AnalyzePassword().checkPass(pass);
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
 }

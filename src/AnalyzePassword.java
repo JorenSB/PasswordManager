@@ -9,9 +9,9 @@ public class AnalyzePassword {
         int amountOfSpecialCharsForOkay = 1;
         int amountOfCharsForGood = 15;
         int amountOfCharsForOkay = 8;
-        if (countCaps(pass) >= amountOfCapsForGood && countNums(pass) >= amountOfNumsForGood || countSpecialChars(pass) > amountOfSpecialCharsForGood && pass.length() >= amountOfCharsForGood) {
+        if (countCaps(pass) >= amountOfCapsForGood && (countNums(pass) >= amountOfNumsForGood || countSpecialChars(pass) > amountOfSpecialCharsForGood) && pass.length() >= amountOfCharsForGood) {
             return "Uw wachtwoord is goed :)";
-        } else if (countCaps(pass) >= amountOfCapsForOkay && countNums(pass) >= amountOfNumsForOkay || countSpecialChars(pass) > amountOfSpecialCharsForOkay && pass.length() >= amountOfCharsForOkay) {
+        } else if (countCaps(pass) >= amountOfCapsForOkay && (countNums(pass) >= amountOfNumsForOkay || countSpecialChars(pass) > amountOfSpecialCharsForOkay) && pass.length() >= amountOfCharsForOkay) {
             return "Uw wachtwoord is voldoende.";
         } else {
             return "Uw wachtwoord is slecht :(";
