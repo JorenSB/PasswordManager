@@ -6,6 +6,7 @@ abstract class MenuItem implements MenuAble {
     public String getName() {
         return name;
     }
+    abstract public void execute();
 }
 class PasswordsMenuItem extends MenuItem {
     public PasswordsMenuItem(String name) {
@@ -30,7 +31,7 @@ class PasswordAddMenuItem extends MenuItem {
         String password = Connector.getStringInput();
         if (password.equals("1")) {
             System.out.println("Length of password?");
-            password = PasswordGenerator.generatePassword(Connector.getIntInput(256));
+            password = PasswordFactory.passwordFactory(Connector.getIntInput(256), false);
         }
         System.out.println(new AnalyzePassword().checkPass(password));
         System.out.println("Url: ");
@@ -65,7 +66,7 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     @Override
     public void execute() {
         System.out.println("Length of password?");
-        System.out.println(PasswordGenerator.generatePassword(Connector.getIntInput(256)));
+        System.out.println(PasswordFactory.passwordFactory(Connector.getIntInput(256), false));
         new MainMenu().startMenu();
     }
 }
