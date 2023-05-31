@@ -6,7 +6,7 @@ class PasswordGeneratorTest {
         // Arrange
         String pass = "";
         // Act
-        pass = PasswordGenerator.generatePassword(10);
+        pass = PasswordFactory.passwordFactory(10, false);
         // Assert
         assertEquals(10, pass.length());
     }
