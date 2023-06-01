@@ -6,7 +6,9 @@ abstract class Menu {
     Menu() {
         items = new ArrayList<>();
     }
+    abstract public void printMenuNaam();
     public void printMenu() {
+        printMenuNaam();
         int index = 1;
         for (MenuAble item : items) {
             System.out.printf("%d : %s\n", index, item.getName());
@@ -23,6 +25,11 @@ class MainMenu extends Menu {
         items.add(new ExitItem("Exit"));
         printMenu();
     }
+
+    @Override
+    public void printMenuNaam() {
+        System.out.println("Main Menu:");
+    }
 }
 class PassMenu extends Menu {
     public void startMenu() {
@@ -38,6 +45,10 @@ class PassMenu extends Menu {
         items.add(new ExitItem("Exit"));
         printMenu();
     }
+    @Override
+    public void printMenuNaam() {
+        System.out.println("Password View Menu:");
+    }
 }
 class PassView extends Menu {
     public void startMenu(Password p) {
@@ -48,5 +59,9 @@ class PassView extends Menu {
         items.add(new MainMenuItem("Main Menu"));
         items.add(new ExitItem("Exit"));
         printMenu();
+    }
+    @Override
+    public void printMenuNaam() {
+        System.out.println("Password Information Menu:");
     }
 }
