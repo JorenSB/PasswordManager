@@ -31,7 +31,7 @@ class PasswordAddMenuItem extends MenuItem {
         String password = Connector.getStringInput();
         if (password.equals("1")) {
             System.out.println("Length of password?");
-            password = PasswordFactory.passwordFactory(Connector.getIntInput(256), false);
+            password = GeneratorManager.generatePassword(Connector.getIntInput(256), false);
         }
         System.out.println(new AnalyzePassword().checkPass(password));
         System.out.println("Url: ");
@@ -66,7 +66,7 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     @Override
     public void execute() {
         System.out.println("Length of password?");
-        System.out.println(PasswordFactory.passwordFactory(Connector.getIntInput(256), false));
+        System.out.println(GeneratorManager.generatePassword(Connector.getIntInput(256), false));
         new MainMenu().startMenu();
     }
 }
@@ -82,7 +82,7 @@ class DeletePasswordItem extends MenuItem {
         new PassMenu().startMenu();
     }
 }
-class AnalyzePasswordItem extends MenuItem{
+class AnalyzePasswordItem extends MenuItem {
     Password pass;
     public AnalyzePasswordItem(String name, Password pass) {
         super(name);
