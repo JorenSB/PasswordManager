@@ -3,12 +3,13 @@ import java.util.Comparator;
 
 abstract class Menu {
     ArrayList<MenuAble> items;
+    MenuAbleFactory menuAbleFactory = new MenuAbleFactory();
     Menu() {
         items = new ArrayList<>();
     }
-    abstract public void printMenuNaam();
+    abstract public void printMenuName();
     public void printMenu() {
-        printMenuNaam();
+        printMenuName();
         int index = 1;
         for (MenuAble item : items) {
             System.out.printf("%d : %s\n", index, item.getName());
@@ -16,18 +17,20 @@ abstract class Menu {
         }
         items.get(Connector.getIntInput(items.size())-1).execute();
     }
+
 }
 class MainMenu extends Menu {
     public void startMenu() {
-        items.add(new PasswordsMenuItem("View passwords"));
-        items.add(new PasswordAddMenuItem("Add a password"));
-        items.add(new GeneratePasswordWithLengthItem("Generate password"));
-        items.add(new ExitItem("Exit"));
+
+        items.add(menuAbleFactory.getMenuAble("PasswordsMenuItem", "View passwords"));
+        items.add(menuAbleFactory.getMenuAble("PasswordAddMenuItem", "Add a password"));
+        items.add(menuAbleFactory.getMenuAble("GeneratePasswordWithLengthItem", "Generate password"));
+        items.add(menuAbleFactory.getMenuAble("ExitItem", "Exit"));
         printMenu();
     }
 
     @Override
-    public void printMenuNaam() {
+    public void printMenuName() {
         System.out.println("Main Menu:");
     }
 }
@@ -41,27 +44,27 @@ class PassMenu extends Menu {
         else {
             System.out.println("No Passwords Saved.");
         }
-        items.add(new MainMenuItem("Main Menu"));
-        items.add(new ExitItem("Exit"));
+        items.add(menuAbleFactory.getMenuAble("MainMenuItem", "Main Menu"));
+        items.add(menuAbleFactory.getMenuAble("ExitItem", "Exit"));
         printMenu();
     }
     @Override
-    public void printMenuNaam() {
+    public void printMenuName() {
         System.out.println("Password View Menu:");
     }
 }
 class PassView extends Menu {
     public void startMenu(Password p) {
         System.out.printf("Name: %s\nUsername: %s\nPassword: %s\nUrl: %s\n", p.getName(), p.getUsername(), p.getPassword(), p.getUrl());
-        items.add(new DeletePasswordItem("Delete Password", p));
-        items.add(new AnalyzePasswordItem("Analyze password", p));
-        items.add(new PasswordsMenuItem("Back"));
-        items.add(new MainMenuItem("Main Menu"));
-        items.add(new ExitItem("Exit"));
+        items.add(menuAbleFactory.getMenuAble("DeletePasswordItem", "Delete Password", p));
+        items.add(menuAbleFactory.getMenuAble("AnalyzePasswordItem", "Analyze password", p));
+        items.add(menuAbleFactory.getMenuAble("PasswordsMenuItem", "Back"));
+        items.add(menuAbleFactory.getMenuAble("MainMenuItem", "Main Menu"));
+        items.add(menuAbleFactory.getMenuAble("ExitItem", "Exit"));
         printMenu();
     }
     @Override
-    public void printMenuNaam() {
+    public void printMenuName() {
         System.out.println("Password Information Menu:");
     }
 }
