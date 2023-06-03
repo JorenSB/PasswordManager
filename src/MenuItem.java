@@ -7,6 +7,7 @@ abstract class MenuItem implements MenuAble {
         return name;
     }
     abstract public void execute();
+    PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
 }
 class PasswordsMenuItem extends MenuItem {
     public PasswordsMenuItem(String name) {
@@ -23,6 +24,7 @@ class PasswordAddMenuItem extends MenuItem {
     }
     @Override
     public void execute() {
+        PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
         System.out.println("Name: ");
         String name = Connector.getStringInput();
         System.out.println("Username: ");
@@ -31,9 +33,9 @@ class PasswordAddMenuItem extends MenuItem {
         String password = Connector.getStringInput();
         if (password.equals("1")) {
             System.out.println("Length of password?");
-            password = GeneratorManager.generatePassword(Connector.getIntInput(256), false);
+            password = passwordManagerFactory.createPasswordGenerator().generate(Connector.getIntInput(256));
         }
-        System.out.println(new AnalyzePassword().checkPass(password));
+        System.out.println(passwordManagerFactory.createPasswordAnalyzer().analyze(password));
         System.out.println("Url: ");
         String url = Connector.getStringInput();
         Password pass = new Password(name, username, password, url);
@@ -65,9 +67,10 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     }
     @Override
     public void execute() {
+        PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
         System.out.println("Length of password?");
-        System.out.println(GeneratorManager.generatePassword(Connector.getIntInput(256), false));
-        new MainMenu().startMenu();
+        System.out.println(passwordManagerFactory.createPasswordGenerator().generate(Connector.getIntInput(256)));
+        new PassToolsMenu().startMenu();
     }
 }
 class DeletePasswordItem extends MenuItem {
@@ -83,19 +86,59 @@ class DeletePasswordItem extends MenuItem {
     }
 }
 class AnalyzePasswordItem extends MenuItem {
-    Password pass;
-    public AnalyzePasswordItem(String name, Password pass) {
+    String password;
+    public AnalyzePasswordItem(String name, String password) {
         super(name);
-        this.pass = pass;
+        this.password = password;
+    }
+    public AnalyzePasswordItem(String name) {
+        super(name);
     }
     @Override
     public void execute() {
-        System.out.println(new AnalyzePassword().checkPass(pass.getPassword()));
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            System.out.println(e.toString());
+        if (password == null) {
+            System.out.println("Password to analyze:");
+            this.password = Connector.getStringInput();
         }
-        new PassView().startMenu(pass);
+        PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
+        System.out.println(passwordManagerFactory.createPasswordAnalyzer().analyze(password));
+        new PassToolsMenu().startMenu();
+    }
+}
+class PasswordToolsMenuItem extends MenuItem {
+    public PasswordToolsMenuItem(String name) {
+        super(name);
+    }
+    @Override
+    public void execute() {
+        new PassToolsMenu().startMenu();
+    }
+}
+class EncryptPassItem extends MenuItem {
+    public EncryptPassItem(String name) {
+        super(name);
+    }
+    @Override
+    public void execute() {
+        System.out.println("Password to encrypt:");
+        String password = Connector.getStringInput();
+        System.out.println("Secret key to use for encryption:");
+        String secretKey = Connector.getStringInput();
+        System.out.println(passwordManagerFactory.createPasswordEncryptor().encrypt(password, secretKey));
+        new PassToolsMenu().startMenu();
+    }
+}
+class DecryptPassItem extends MenuItem {
+    public DecryptPassItem(String name) {
+        super(name);
+    }
+    @Override
+    public void execute() {
+        System.out.println("Password to decrypt:");
+        String password = Connector.getStringInput();
+        System.out.println("Secret key to use for decryption:");
+        String secretKey = Connector.getStringInput();
+        System.out.println(passwordManagerFactory.createPasswordEncryptor().decrypt(password, secretKey));
+        new PassToolsMenu().startMenu();
     }
 }
