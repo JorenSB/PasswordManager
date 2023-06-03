@@ -71,8 +71,6 @@ class PassToolsMenu extends Menu {
     public void startMenu() {
         items.add(new GeneratePasswordWithLengthItem("Generate Password"));
         items.add(new AnalyzePasswordItem("Analyze Password"));
-        items.add(new EncryptPassItem("Encrypt Password"));
-        items.add(new DecryptPassItem("Decrypt Password"));
         items.add(new MainMenuItem("Main Menu"));
         items.add(new ExitItem("Exit"));
         printMenu();

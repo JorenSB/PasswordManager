@@ -114,31 +114,3 @@ class PasswordToolsMenuItem extends MenuItem {
         new PassToolsMenu().startMenu();
     }
 }
-class EncryptPassItem extends MenuItem {
-    public EncryptPassItem(String name) {
-        super(name);
-    }
-    @Override
-    public void execute() {
-        System.out.println("Password to encrypt:");
-        String password = Connector.getStringInput();
-        System.out.println("Secret key to use for encryption:");
-        String secretKey = Connector.getStringInput();
-        System.out.println(passwordManagerFactory.createPasswordEncryptor().encrypt(password, secretKey));
-        new PassToolsMenu().startMenu();
-    }
-}
-class DecryptPassItem extends MenuItem {
-    public DecryptPassItem(String name) {
-        super(name);
-    }
-    @Override
-    public void execute() {
-        System.out.println("Password to decrypt:");
-        String password = Connector.getStringInput();
-        System.out.println("Secret key to use for decryption:");
-        String secretKey = Connector.getStringInput();
-        System.out.println(passwordManagerFactory.createPasswordEncryptor().decrypt(password, secretKey));
-        new PassToolsMenu().startMenu();
-    }
-}
