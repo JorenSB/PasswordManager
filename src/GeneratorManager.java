@@ -1,8 +1,12 @@
 import java.util.Random;
-abstract class PasswordFactory {
-    public static String passwordFactory(int length, boolean mustContainCapAndSpecialChar) {
+class GeneratorManager {
+    private static final int amountOfGenerators = 2;
+    public static int getAmountOfGenerators() {
+        return amountOfGenerators;
+    }
+    public static String generatePassword(int length, boolean mustContainCapAndSpecialChar) {
         if (mustContainCapAndSpecialChar) {
-            return PasswordGeneratorv2.generatePassword(length);
+            return PasswordGeneratorV2.generatePassword(length);
         }
         else {
             return PasswordGenerator.generatePassword(length);
@@ -21,7 +25,7 @@ class PasswordGenerator {
         return password.toString();
     }
 }
-class PasswordGeneratorv2 {
+class PasswordGeneratorV2 {
     public static String generatePassword(int maxLength) {
         String allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
         Random random = new Random();
