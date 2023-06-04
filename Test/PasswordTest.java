@@ -4,7 +4,7 @@ class PasswordTest {
     @Test
     void addPass() {
         // Arrange
-        PasswordList.startArrayList();
+        PasswordList.initialize("Test\\test.txt");
         PasswordList.clearPasswords();
         Password p = new Password("Test", "", "", "");
         // Act
@@ -15,7 +15,7 @@ class PasswordTest {
     @Test
     void removePass() {
         // Arrange
-        PasswordList.startArrayList();
+        PasswordList.initialize("Test\\test.txt");
         PasswordList.clearPasswords();
         Password p = new Password("Test", "", "", "");
         PasswordList.addPassword(p);

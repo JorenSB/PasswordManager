@@ -48,7 +48,7 @@ class ExitItem extends MenuItem {
     }
     @Override
     public void execute() {
-        new FileIO().writePasswords(PasswordList.getPasswords());
+        new FileIO("data.txt").savePasswords(PasswordList.getPasswords());
     }
 }
 class MainMenuItem extends MenuItem {
