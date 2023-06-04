@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class AnalyzePasswordTest {
+    PasswordToolsFactory passwordToolsFactory = new SimplePasswordToolsFactory();
     //Modified Condition Decision Coverage Tests (MCDC)
     @Test
     public void checkPassIsGoodBecauseAllConditionsAreMet() {
@@ -9,7 +10,7 @@ class AnalyzePasswordTest {
         String pass = "ABCdefghijkl123";
         String expected = "Uw wachtwoord is goed :)";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -19,7 +20,7 @@ class AnalyzePasswordTest {
         String pass = "abcdefghijkl123";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -29,7 +30,7 @@ class AnalyzePasswordTest {
         String pass = "ABCdefghijklmno";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -39,7 +40,7 @@ class AnalyzePasswordTest {
         String pass = "ABC123";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -51,7 +52,7 @@ class AnalyzePasswordTest {
         String pass = "ABCDefghijkl1234";
         String expected = "Uw wachtwoord is goed :)";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -61,7 +62,7 @@ class AnalyzePasswordTest {
         String pass = "ABCdefghijkl123";
         String expected = "Uw wachtwoord is goed :)";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -71,7 +72,7 @@ class AnalyzePasswordTest {
         String pass = "ABcdefghijkl12";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -81,7 +82,7 @@ class AnalyzePasswordTest {
         String pass = "ABcdefgh1";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -91,7 +92,7 @@ class AnalyzePasswordTest {
         String pass = "Abcdefg1";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -101,7 +102,7 @@ class AnalyzePasswordTest {
         String pass = "abcdefg";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -111,7 +112,7 @@ class AnalyzePasswordTest {
         String pass = "a";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -122,7 +123,7 @@ class AnalyzePasswordTest {
         String pass = "a";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -132,7 +133,7 @@ class AnalyzePasswordTest {
         String pass = "abcdef1!";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -142,7 +143,7 @@ class AnalyzePasswordTest {
         String pass = "abcdefghi123!@#";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -152,7 +153,7 @@ class AnalyzePasswordTest {
         String pass = "Abc1!@#";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -162,7 +163,7 @@ class AnalyzePasswordTest {
         String pass = "Abcde123";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -172,7 +173,7 @@ class AnalyzePasswordTest {
         String pass = "Abcdefghijklmn!";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -182,7 +183,7 @@ class AnalyzePasswordTest {
         String pass = "ABC123!";
         String expected = "Uw wachtwoord is slecht :(";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -192,7 +193,7 @@ class AnalyzePasswordTest {
         String pass = "ABCde!@#";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }
@@ -202,7 +203,7 @@ class AnalyzePasswordTest {
         String pass = "ABCdefghijklmn1";
         String expected = "Uw wachtwoord is voldoende.";
         // Act
-        String actual = new AnalyzePassword().checkPass(pass);
+        String actual = passwordToolsFactory.createPasswordAnalyzer().analyze(pass);
         // Assert
         Assertions.assertEquals(expected, actual);
     }

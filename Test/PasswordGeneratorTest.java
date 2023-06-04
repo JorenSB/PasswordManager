@@ -5,8 +5,9 @@ class PasswordGeneratorTest {
     void GeneratePassLength10Test() {
         // Arrange
         String pass = "";
+        PasswordToolsFactory passwordToolsFactory = new SimplePasswordToolsFactory();
         // Act
-        pass = PasswordFactory.passwordFactory(10, false);
+        pass = passwordToolsFactory.createPasswordGenerator().generate(10);
         // Assert
         assertEquals(10, pass.length());
     }
