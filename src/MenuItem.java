@@ -24,7 +24,6 @@ class PasswordAddMenuItem extends MenuItem {
     }
     @Override
     public void execute() {
-        PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
         System.out.println("Name: ");
         String name = Connector.getStringInput();
         System.out.println("Username: ");
@@ -49,7 +48,7 @@ class ExitItem extends MenuItem {
     }
     @Override
     public void execute() {
-        Connector.writePasswords(Connector.passwords);
+        FileIO.writePasswords(Connector.passwords);
     }
 }
 class MainMenuItem extends MenuItem {
@@ -67,7 +66,6 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     }
     @Override
     public void execute() {
-        PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
         System.out.println("Length of password?");
         System.out.println(passwordManagerFactory.createPasswordGenerator().generate(Connector.getIntInput(256)));
         new PassToolsMenu().startMenu();
@@ -100,7 +98,6 @@ class AnalyzePasswordItem extends MenuItem {
             System.out.println("Password to analyze:");
             this.password = Connector.getStringInput();
         }
-        PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
         System.out.println(passwordManagerFactory.createPasswordAnalyzer().analyze(password));
         new PassToolsMenu().startMenu();
     }

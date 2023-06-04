@@ -10,10 +10,10 @@ class ConnectorTest {
         Connector.passwords.clear();
         Connector.passwords.add(new Password("test", "", "", ""));
         Connector.passwords.add(new Password("test2", "", "", ""));
-        Connector.filename = new File("Test\\test.txt");
+        FileIO.filename = new File("Test\\test.txt");
         // Act
-        Connector.writePasswords(Connector.passwords);
-        Connector.passwords = new ArrayList<>(Connector.getPasswords());
+        FileIO.writePasswords(Connector.passwords);
+        Connector.passwords = new ArrayList<>(FileIO.getPasswords());
         // Assert
         assertEquals(2, Connector.passwords.size());
     }
