@@ -4,24 +4,24 @@ class PasswordTest {
     @Test
     void addPass() {
         // Arrange
-        Connector.startArrayList();
-        Connector.passwords.clear();
+        PasswordList.startArrayList();
+        PasswordList.clearPasswords();
         Password p = new Password("Test", "", "", "");
         // Act
-        p.addPass();
+        PasswordList.addPassword(p);
         // Assert
-        assertEquals(1, Connector.passwords.size());
+        assertEquals(1, PasswordList.getPasswords().size());
     }
     @Test
     void removePass() {
         // Arrange
-        Connector.startArrayList();
-        Connector.passwords.clear();
+        PasswordList.startArrayList();
+        PasswordList.clearPasswords();
         Password p = new Password("Test", "", "", "");
-        Connector.passwords.add(p);
+        PasswordList.addPassword(p);
         // Act
-        p.removePass();
+        PasswordList.removePassword(p);
         // Assert
-        assertEquals(0, Connector.passwords.size());
+        assertEquals(0, PasswordList.getPasswords().size());
     }
 }

@@ -33,10 +33,9 @@ class MainMenu extends Menu {
 }
 class PassMenu extends Menu {
     public void startMenu() {
-        if (Connector.passwords != null && Connector.passwords.size() > 0) {
+        if (PasswordList.getPasswords() != null && PasswordList.getPasswords().size() > 0) {
             System.out.println("Saved Passwords:");
-            Connector.passwords.sort(Comparator.comparing(Password::getName));
-            items.addAll(Connector.passwords);
+            items.addAll(PasswordList.getPasswords());
         }
         else {
             System.out.println("No Passwords Saved.");

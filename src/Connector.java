@@ -1,15 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 class Connector {
-    public static ArrayList<Password> passwords;
-    public static void startArrayList() {
-        if (FileIO.getPasswords() == null) {
-            passwords = new ArrayList<>();
-        }
-        else {
-            passwords = new ArrayList<>(FileIO.getPasswords());
-        }
-    }
     public static int getIntInput(int max) {
         Scanner sc = new Scanner(System.in);
         int input = 0;

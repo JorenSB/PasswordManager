@@ -34,12 +34,6 @@ public class Password implements MenuAble, Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
-    public void removePass() {
-        Connector.passwords.removeIf(password -> password.equals(this));
-    }
-    public void addPass() {
-        Connector.passwords.add(this);
-    }
     @Override
     public void execute() {
         new PassView().startMenu(this);

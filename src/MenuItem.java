@@ -38,7 +38,7 @@ class PasswordAddMenuItem extends MenuItem {
         System.out.println("Url: ");
         String url = Connector.getStringInput();
         Password pass = new Password(name, username, password, url);
-        pass.addPass();
+        PasswordList.addPassword(pass);
         new MainMenu().startMenu();
     }
 }
@@ -48,7 +48,7 @@ class ExitItem extends MenuItem {
     }
     @Override
     public void execute() {
-        FileIO.writePasswords(Connector.passwords);
+        FileIO.writePasswords(PasswordList.getPasswords());
     }
 }
 class MainMenuItem extends MenuItem {
@@ -79,7 +79,7 @@ class DeletePasswordItem extends MenuItem {
     }
     @Override
     public void execute() {
-        password.removePass();
+        PasswordList.removePassword(password);
         new PassMenu().startMenu();
     }
 }

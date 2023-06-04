@@ -1,20 +1,22 @@
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 class ConnectorTest {
     @Test
     void ReadAndWritePasswordsToAndFromFile() {
         // Arrange
-        Connector.startArrayList();
-        Connector.passwords.clear();
-        Connector.passwords.add(new Password("test", "", "", ""));
-        Connector.passwords.add(new Password("test2", "", "", ""));
+        PasswordList.startArrayList();
+        PasswordList.clearPasswords();
+        PasswordList.addPassword(new Password("test", "", "", ""));
+        PasswordList.addPassword(new Password("test2", "", "", ""));
         FileIO.filename = new File("Test\\test.txt");
         // Act
-        FileIO.writePasswords(Connector.passwords);
-        Connector.passwords = new ArrayList<>(FileIO.getPasswords());
+        FileIO.writePasswords(PasswordList.getPasswords());
+        PasswordList.setPasswords(new ArrayList<>(FileIO.getPasswords()));
         // Assert
-        assertEquals(2, Connector.passwords.size());
+        assertEquals(2, PasswordList.getPasswords().size());
     }
 }
