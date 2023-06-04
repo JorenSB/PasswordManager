@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 
 public class PasswordList {
@@ -5,11 +6,12 @@ public class PasswordList {
 
     private static ArrayList<Password> passwords;
     public static void startArrayList() {
-        if (FileIO.getPasswords() == null) {
+        FileIO fileIO = new FileIO();
+        if (fileIO.getPasswords() == null) {
             passwords = new ArrayList<>();
         }
         else {
-            passwords = new ArrayList<>(FileIO.getPasswords());
+            passwords = new ArrayList<>(fileIO.getPasswords());
         }
     }
     public static ArrayList<Password> getPasswords() {

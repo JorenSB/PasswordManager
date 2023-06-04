@@ -1,11 +1,11 @@
 import java.util.Random;
 
-interface PasswordManagerFactory {
+interface PasswordToolsFactory {
     PasswordGenerator createPasswordGenerator();
     PasswordAnalyzer createPasswordAnalyzer();
 }
 
-class AdvancedPasswordManagerFactory implements PasswordManagerFactory {
+class AdvancedPasswordToolsFactory implements PasswordToolsFactory {
     @Override
     public PasswordGenerator createPasswordGenerator() {
         return new AdvancedPasswordGenerator();
@@ -17,7 +17,7 @@ class AdvancedPasswordManagerFactory implements PasswordManagerFactory {
     }
 }
 
-class SimplePasswordManagerFactory implements PasswordManagerFactory {
+class SimplePasswordToolsFactory implements PasswordToolsFactory {
     @Override
     public PasswordGenerator createPasswordGenerator() {
         return new SimplePasswordGenerator();

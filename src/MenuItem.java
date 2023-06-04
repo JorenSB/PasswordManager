@@ -7,7 +7,7 @@ abstract class MenuItem implements MenuAble {
         return name;
     }
     abstract public void execute();
-    PasswordManagerFactory passwordManagerFactory = new SimplePasswordManagerFactory();
+    PasswordToolsFactory passwordToolsFactory = new SimplePasswordToolsFactory();
 }
 class PasswordsMenuItem extends MenuItem {
     public PasswordsMenuItem(String name) {
@@ -32,9 +32,9 @@ class PasswordAddMenuItem extends MenuItem {
         String password = UserInput.getStringInput();
         if (password.equals("1")) {
             System.out.println("Length of password?");
-            password = passwordManagerFactory.createPasswordGenerator().generate(UserInput.getIntInput(256));
+            password = passwordToolsFactory.createPasswordGenerator().generate(UserInput.getIntInput(256));
         }
-        System.out.println(passwordManagerFactory.createPasswordAnalyzer().analyze(password));
+        System.out.println(passwordToolsFactory.createPasswordAnalyzer().analyze(password));
         System.out.println("Url: ");
         String url = UserInput.getStringInput();
         Password pass = new Password(name, username, password, url);
@@ -48,7 +48,7 @@ class ExitItem extends MenuItem {
     }
     @Override
     public void execute() {
-        FileIO.writePasswords(PasswordList.getPasswords());
+        new FileIO().writePasswords(PasswordList.getPasswords());
     }
 }
 class MainMenuItem extends MenuItem {
@@ -67,7 +67,7 @@ class GeneratePasswordWithLengthItem extends MenuItem {
     @Override
     public void execute() {
         System.out.println("Length of password?");
-        System.out.println(passwordManagerFactory.createPasswordGenerator().generate(UserInput.getIntInput(256)));
+        System.out.println(passwordToolsFactory.createPasswordGenerator().generate(UserInput.getIntInput(256)));
         new PassToolsMenu().startMenu();
     }
 }
@@ -98,7 +98,7 @@ class AnalyzePasswordItem extends MenuItem {
             System.out.println("Password to analyze:");
             this.password = UserInput.getStringInput();
         }
-        System.out.println(passwordManagerFactory.createPasswordAnalyzer().analyze(password));
+        System.out.println(passwordToolsFactory.createPasswordAnalyzer().analyze(password));
         new PassToolsMenu().startMenu();
     }
 }
