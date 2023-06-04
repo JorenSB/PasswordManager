@@ -12,10 +12,11 @@ class UserInputTest {
         PasswordList.clearPasswords();
         PasswordList.addPassword(new Password("test", "", "", ""));
         PasswordList.addPassword(new Password("test2", "", "", ""));
-        FileIO.filename = new File("Test\\test.txt");
+        FileIO fileIO = new FileIO();
+        fileIO.setFilename("Test\\test.txt");
         // Act
-        FileIO.writePasswords(PasswordList.getPasswords());
-        PasswordList.setPasswords(new ArrayList<>(FileIO.getPasswords()));
+        fileIO.writePasswords(PasswordList.getPasswords());
+        PasswordList.setPasswords(new ArrayList<>(fileIO.getPasswords()));
         // Assert
         assertEquals(2, PasswordList.getPasswords().size());
     }

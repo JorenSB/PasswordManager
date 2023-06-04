@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class UserInput {
+public class UserInput {
     public static int getIntInput(int max) {
         Scanner sc = new Scanner(System.in);
         int input = 0;

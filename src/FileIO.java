@@ -3,7 +3,10 @@ import java.util.ArrayList;
 
 public class FileIO {
     static File filename = new File("data.txt");
-    public static void writePasswords(ArrayList<Password> passwords) {
+    public void setFilename(String filename) {
+        FileIO.filename = new File(filename);
+    }
+    public void writePasswords(ArrayList<Password> passwords) {
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -14,7 +17,7 @@ public class FileIO {
             e.printStackTrace();
         }
     }
-    public static ArrayList<Password> getPasswords() {
+    public ArrayList<Password> getPasswords() {
         ArrayList<Password> passwords = null;
         try {
             FileInputStream fis = new FileInputStream(filename);
