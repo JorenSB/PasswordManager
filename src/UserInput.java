@@ -1,6 +1,5 @@
-import java.util.ArrayList;
 import java.util.Scanner;
-class Connector {
+class UserInput {
     public static int getIntInput(int max) {
         Scanner sc = new Scanner(System.in);
         int input = 0;

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 
 abstract class Menu {
     ArrayList<MenuAble> items;
@@ -14,7 +13,7 @@ abstract class Menu {
             System.out.printf("%d : %s\n", index, item.getName());
             index++;
         }
-        items.get(Connector.getIntInput(items.size())-1).execute();
+        items.get(UserInput.getIntInput(items.size())-1).execute();
     }
 }
 class MainMenu extends Menu {
