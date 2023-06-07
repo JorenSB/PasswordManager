@@ -3,11 +3,9 @@ import java.util.ArrayList;
 
 public class FileWriter implements PasswordWriter {
     private final File filename;
-
     public FileWriter(String filename) {
         this.filename = new File(filename);
     }
-
     @Override
     public void savePasswords(ArrayList<Password> passwords) {
         try {
@@ -19,7 +17,6 @@ public class FileWriter implements PasswordWriter {
             e.printStackTrace();
         }
     }
-
     @Override
     public ArrayList<Password> getPasswords() {
         ArrayList<Password> passwords = new ArrayList<>();

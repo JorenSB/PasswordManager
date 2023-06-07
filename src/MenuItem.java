@@ -7,7 +7,6 @@ abstract class MenuItem implements MenuAble {
         return name;
     }
     abstract public void execute();
-
 }
 abstract class MenuItemWithPasswordListAndPasswordToolsFactory extends MenuItem {
     PasswordToolsFactory passwordToolsFactory;
@@ -39,14 +38,13 @@ class PasswordAddItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
         String url = UserInput.getStringInput();
         Password pass = new Password(name, username, password, url);
         passwordList.addPassword(pass);
-        new MainMenu("Main Menu", passwordList, passwordToolsFactory).startMenu();
+        new MainMenu("Main Menu", passwordList, passwordToolsFactory).execute();
     }
 }
 class ExitItem extends MenuItem {
     public ExitItem(String name) {
         super(name);
     }
-
     @Override
     public void execute() {
     }
@@ -59,21 +57,19 @@ class GeneratePasswordWithLengthItem extends MenuItemWithPasswordListAndPassword
     public void execute() {
         System.out.println("Length of password?");
         System.out.println(passwordToolsFactory.createPasswordGenerator().generate(UserInput.getIntInput(256)));
-        new PasswordToolsMenu("Password Tools Menu", passwordList, passwordToolsFactory).startMenu();
+        new PasswordToolsMenu("Password Tools Menu", passwordList, passwordToolsFactory).execute();
     }
 }
 class DeletePasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
     private final Password password;
-
     public DeletePasswordItem(String name, Password password, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
         super(name, passwordList, passwordToolsFactory);
         this.password = password;
     }
-
     @Override
     public void execute() {
         passwordList.removePassword(password);
-        new PasswordsViewMenu("Passwords View Menu", passwordList, passwordToolsFactory).startMenu();
+        new PasswordsViewMenu("Passwords View Menu", passwordList, passwordToolsFactory).execute();
     }
 }
 class AnalyzePasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
@@ -92,23 +88,17 @@ class AnalyzePasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactor
             this.password = UserInput.getStringInput();
         }
         System.out.println(passwordToolsFactory.createPasswordAnalyzer().analyze(password));
-        new MainMenu("Main Menu", passwordList, passwordToolsFactory).startMenu();
+        new MainMenu("Main Menu", passwordList, passwordToolsFactory).execute();
     }
 }
-class PasswordItem extends MenuWithPasswordListAndPasswordToolsFactory {
+class PasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
     Password password;
     PasswordItem(String name, Password password, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
         super(name, passwordList, passwordToolsFactory);
         this.password = password;
     }
-
-    @Override
-    public void printMenuName() {
-
-    }
-
     @Override
     public void execute() {
-        new PassInformationMenu("Password View Menu", password, passwordList, passwordToolsFactory).startMenu();
+        new PasswordInformationMenu("Password View Menu", password, passwordList, passwordToolsFactory).execute();
     }
 }

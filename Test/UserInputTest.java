@@ -14,6 +14,6 @@ class UserInputTest {
         passwordList.addPassword(new Password("test", "", "", ""));
         passwordList.addPassword(new Password("test2", "", "", ""));
         // Assert
-        assertEquals(2, passwordList.getPasswordsFromFile().size());
+        assertEquals(2, passwordList.getPasswordsFromWriter().size());
     }
 }
