@@ -40,7 +40,7 @@ class MainMenu extends MenuWithPasswordListAndPasswordToolsFactory {
     MainMenu(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
         super(name, passwordList, passwordToolsFactory);
         items.add(new PasswordsViewMenu("View passwords", passwordList, passwordToolsFactory));
-        items.add(new PasswordAddItem("Add a password", passwordList, passwordToolsFactory));
+        items.add(new AddPasswordItem("Add a password", passwordList, passwordToolsFactory));
         items.add(new PasswordToolsMenu("Password Tools", passwordList, passwordToolsFactory));
         items.add(new ExitItem("Exit"));
     }

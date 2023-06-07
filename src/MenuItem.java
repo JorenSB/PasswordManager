@@ -17,8 +17,8 @@ abstract class MenuItemWithPasswordListAndPasswordToolsFactory extends MenuItem 
         this.passwordToolsFactory = passwordToolsFactory;
     }
 }
-class PasswordAddItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
-    public PasswordAddItem(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+class AddPasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
+    public AddPasswordItem(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
         super(name, passwordList, passwordToolsFactory);
     }
     @Override
