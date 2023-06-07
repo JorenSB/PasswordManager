@@ -8,15 +8,12 @@ class UserInputTest {
     @Test
     void ReadAndWritePasswordsToAndFromFile() {
         // Arrange
-        PasswordList.initialize("Test\\test.txt");
-        PasswordList.clearPasswords();
-        PasswordList.addPassword(new Password("test", "", "", ""));
-        PasswordList.addPassword(new Password("test2", "", "", ""));
-        FileIO fileIO = new FileIO("Test\\test.txt");
+        PasswordList passwordList = new PasswordList(new FileWriter("Test\\test.txt"));
+        passwordList.clearPasswords();
         // Act
-        fileIO.savePasswords(PasswordList.getPasswords());
-        PasswordList.setPasswords(new ArrayList<>(fileIO.getPasswords()));
+        passwordList.addPassword(new Password("test", "", "", ""));
+        passwordList.addPassword(new Password("test2", "", "", ""));
         // Assert
-        assertEquals(2, PasswordList.getPasswords().size());
+        assertEquals(2, passwordList.getPasswordsFromFile().size());
     }
 }

@@ -7,20 +7,20 @@ abstract class MenuItem implements MenuAble {
         return name;
     }
     abstract public void execute();
-    PasswordToolsFactory passwordToolsFactory = new SimplePasswordToolsFactory();
+
 }
-class PasswordsMenuItem extends MenuItem {
-    public PasswordsMenuItem(String name) {
+abstract class MenuItemWithPasswordListAndPasswordToolsFactory extends MenuItem {
+    PasswordToolsFactory passwordToolsFactory;
+    PasswordList passwordList;
+    public MenuItemWithPasswordListAndPasswordToolsFactory(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
         super(name);
-    }
-    @Override
-    public void execute() {
-        new PassMenu().startMenu();
+        this.passwordList = passwordList;
+        this.passwordToolsFactory = passwordToolsFactory;
     }
 }
-class PasswordAddMenuItem extends MenuItem {
-    public PasswordAddMenuItem(String name) {
-        super(name);
+class PasswordAddItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
+    public PasswordAddItem(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+        super(name, passwordList, passwordToolsFactory);
     }
     @Override
     public void execute() {
@@ -38,59 +38,52 @@ class PasswordAddMenuItem extends MenuItem {
         System.out.println("Url: ");
         String url = UserInput.getStringInput();
         Password pass = new Password(name, username, password, url);
-        PasswordList.addPassword(pass);
-        new MainMenu().startMenu();
+        passwordList.addPassword(pass);
+        new MainMenu("Main Menu", passwordList, passwordToolsFactory).startMenu();
     }
 }
 class ExitItem extends MenuItem {
     public ExitItem(String name) {
         super(name);
     }
+
     @Override
     public void execute() {
-        new FileIO("data.txt").savePasswords(PasswordList.getPasswords());
     }
 }
-class MainMenuItem extends MenuItem {
-    public MainMenuItem(String name) {
-        super(name);
-    }
-    @Override
-    public void execute() {
-        new MainMenu().startMenu();
-    }
-}
-class GeneratePasswordWithLengthItem extends MenuItem {
-    public GeneratePasswordWithLengthItem(String name) {
-        super(name);
+class GeneratePasswordWithLengthItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
+    public GeneratePasswordWithLengthItem(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+        super(name, passwordList, passwordToolsFactory);
     }
     @Override
     public void execute() {
         System.out.println("Length of password?");
         System.out.println(passwordToolsFactory.createPasswordGenerator().generate(UserInput.getIntInput(256)));
-        new PassToolsMenu().startMenu();
+        new PasswordToolsMenu("Password Tools Menu", passwordList, passwordToolsFactory).startMenu();
     }
 }
-class DeletePasswordItem extends MenuItem {
+class DeletePasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
     private final Password password;
-    public DeletePasswordItem(String name, Password password) {
-        super(name);
+
+    public DeletePasswordItem(String name, Password password, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+        super(name, passwordList, passwordToolsFactory);
         this.password = password;
     }
+
     @Override
     public void execute() {
-        PasswordList.removePassword(password);
-        new PassMenu().startMenu();
+        passwordList.removePassword(password);
+        new PasswordsViewMenu("Passwords View Menu", passwordList, passwordToolsFactory).startMenu();
     }
 }
-class AnalyzePasswordItem extends MenuItem {
+class AnalyzePasswordItem extends MenuItemWithPasswordListAndPasswordToolsFactory {
     String password;
-    public AnalyzePasswordItem(String name, String password) {
-        super(name);
+    public AnalyzePasswordItem(String name, String password, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+        super(name, passwordList, passwordToolsFactory);
         this.password = password;
     }
-    public AnalyzePasswordItem(String name) {
-        super(name);
+    public AnalyzePasswordItem(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+        super(name, passwordList, passwordToolsFactory);
     }
     @Override
     public void execute() {
@@ -99,15 +92,23 @@ class AnalyzePasswordItem extends MenuItem {
             this.password = UserInput.getStringInput();
         }
         System.out.println(passwordToolsFactory.createPasswordAnalyzer().analyze(password));
-        new PassToolsMenu().startMenu();
+        new MainMenu("Main Menu", passwordList, passwordToolsFactory).startMenu();
     }
 }
-class PasswordToolsMenuItem extends MenuItem {
-    public PasswordToolsMenuItem(String name) {
-        super(name);
+class PasswordItem extends MenuWithPasswordListAndPasswordToolsFactory {
+    Password password;
+    PasswordItem(String name, Password password, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
+        super(name, passwordList, passwordToolsFactory);
+        this.password = password;
     }
+
+    @Override
+    public void printMenuName() {
+
+    }
+
     @Override
     public void execute() {
-        new PassToolsMenu().startMenu();
+        new PassInformationMenu("Password View Menu", password, passwordList, passwordToolsFactory).startMenu();
     }
 }

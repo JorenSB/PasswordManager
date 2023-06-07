@@ -1,5 +1,5 @@
 import java.io.Serializable;
-public class Password implements MenuAble, Serializable {
+public class Password implements  Serializable {
     private String name;
     private String username;
     private String password;
@@ -33,9 +33,5 @@ public class Password implements MenuAble, Serializable {
     }
     public void setUrl(String url) {
         this.url = url;
-    }
-    @Override
-    public void execute() {
-        new PassView().startMenu(this);
     }
 }

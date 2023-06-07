@@ -1,10 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileIO implements PasswordRepository {
+public class FileWriter implements PasswordWriter {
     private final File filename;
 
-    public FileIO(String filename) {
+    public FileWriter(String filename) {
         this.filename = new File(filename);
     }
 
@@ -22,7 +22,7 @@ public class FileIO implements PasswordRepository {
 
     @Override
     public ArrayList<Password> getPasswords() {
-        ArrayList<Password> passwords = null;
+        ArrayList<Password> passwords = new ArrayList<>();
         try {
             FileInputStream fis = new FileInputStream(filename);
             if (fis.available() > 0) {

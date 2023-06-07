@@ -1,34 +1,42 @@
 import java.util.ArrayList;
 
 public class PasswordList {
-    private static ArrayList<Password> passwords;
-    private static PasswordRepository passwordRepository;
+    private ArrayList<Password> passwords;
+    private PasswordWriter passwordWriter;
 
-    public static void initialize(String filename) {
-        passwordRepository = new FileIO(filename);
-        passwords = passwordRepository.getPasswords();
-        if (passwords == null) {
-            passwords = new ArrayList<>();
-        }
+
+    public PasswordList(PasswordWriter passwordWriter) {
+        this.passwordWriter = passwordWriter;
+        this.passwords = passwordWriter.getPasswords();
     }
-
-    public static ArrayList<Password> getPasswords() {
+    public ArrayList<Password> getPasswords() {
         return passwords;
     }
 
-    public static void setPasswords(ArrayList<Password> passwords) {
-        PasswordList.passwords = passwords;
+    public void setPasswords(ArrayList<Password> passwords) {
+        this.passwords = passwords;
+        savePasswords();
     }
 
-    public static void addPassword(Password password) {
+    public void addPassword(Password password) {
         passwords.add(password);
+        savePasswords();
     }
 
-    public static void removePassword(Password password) {
+    public void removePassword(Password password) {
         passwords.remove(password);
+        savePasswords();
     }
 
-    public static void clearPasswords() {
+    public void clearPasswords() {
         passwords.clear();
+        savePasswords();
+    }
+    private void savePasswords() {
+        passwordWriter.savePasswords(passwords);
+    }
+    public ArrayList<Password> getPasswordsFromFile() {
+        passwords = passwordWriter.getPasswords();
+        return passwords;
     }
 }

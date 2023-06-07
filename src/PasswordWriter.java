@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public interface PasswordRepository {
+public interface PasswordWriter {
     void savePasswords(ArrayList<Password> passwords);
     ArrayList<Password> getPasswords();
 }

@@ -1,7 +1,8 @@
 public class
 Main {
     public static void main(String[] args) {
-        PasswordList.initialize("data.txt");
-        new MainMenu().startMenu();
+        PasswordList passwordList = new PasswordList(new FileWriter("data.txt"));
+        PasswordToolsFactory passwordToolsFactory = new SimplePasswordToolsFactory();
+        new MainMenu("Main Menu", passwordList, passwordToolsFactory).startMenu();
     }
 }

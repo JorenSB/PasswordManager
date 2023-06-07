@@ -4,24 +4,24 @@ class PasswordTest {
     @Test
     void addPass() {
         // Arrange
-        PasswordList.initialize("Test\\test.txt");
-        PasswordList.clearPasswords();
+        PasswordList passwordList = new PasswordList(new FileWriter("Test\\test.txt"));
+        passwordList.clearPasswords();
         Password p = new Password("Test", "", "", "");
         // Act
-        PasswordList.addPassword(p);
+        passwordList.addPassword(p);
         // Assert
-        assertEquals(1, PasswordList.getPasswords().size());
+        assertEquals(1, passwordList.getPasswords().size());
     }
     @Test
     void removePass() {
         // Arrange
-        PasswordList.initialize("Test\\test.txt");
-        PasswordList.clearPasswords();
+        PasswordList passwordList = new PasswordList(new FileWriter("Test\\test.txt"));
+        passwordList.clearPasswords();
         Password p = new Password("Test", "", "", "");
-        PasswordList.addPassword(p);
+        passwordList.addPassword(p);
         // Act
-        PasswordList.removePassword(p);
+        passwordList.removePassword(p);
         // Assert
-        assertEquals(0, PasswordList.getPasswords().size());
+        assertEquals(0, passwordList.getPasswords().size());
     }
 }
