@@ -10,12 +10,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-public class JsonWriter implements PasswordWriter{
-    private final File filename;
-        public JsonWriter(String filename) {
-            this.filename = new File(filename);
-        }
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+public class JsonWriter extends PasswordWriterExtension {
+    public JsonWriter(String filename) {
+        super(filename);
+    }
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
     public void savePasswords(ArrayList<Password> passwords) {

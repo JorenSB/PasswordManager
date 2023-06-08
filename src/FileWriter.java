@@ -1,10 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileWriter implements PasswordWriter {
-    private final File filename;
+public class FileWriter extends PasswordWriterExtension {
     public FileWriter(String filename) {
-        this.filename = new File(filename);
+        super(filename);
     }
     @Override
     public void savePasswords(ArrayList<Password> passwords) {
