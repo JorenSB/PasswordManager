@@ -53,14 +53,11 @@ class PasswordsViewMenu extends MenuWithPasswordListAndPasswordToolsFactory {
     PasswordsViewMenu(String name, PasswordList passwordList, PasswordToolsFactory passwordToolsFactory) {
         super(name, passwordList, passwordToolsFactory);
         if (passwordList.getPasswords().size() > 0) {
-            System.out.println("Saved Passwords:");
             for (Password password : passwordList.getPasswords()) {
                 items.add(new PasswordItem(password.getName(), password, passwordList, passwordToolsFactory));
             }
-        } else {
-            System.out.println("No Passwords Saved.");
         }
-        items.add(new MainMenu("Main Menu", passwordList, passwordToolsFactory));
+        items.add(new MainMenuItem("Main Menu", passwordList, passwordToolsFactory));
         items.add(new ExitItem("Exit"));
     }
     @Override
@@ -73,7 +70,7 @@ class PasswordToolsMenu extends MenuWithPasswordListAndPasswordToolsFactory {
         super(name, passwordList, passwordToolsFactory);
         items.add(new GeneratePasswordWithLengthItem("Generate Password", passwordList ,passwordToolsFactory));
         items.add(new AnalyzePasswordItem("Analyze Password", passwordList, passwordToolsFactory));
-        items.add(new MainMenu("Main Menu", passwordList, passwordToolsFactory));
+        items.add(new MainMenuItem("Main Menu", passwordList, passwordToolsFactory));
         items.add(new ExitItem("Exit"));
     }
     @Override
@@ -90,7 +87,7 @@ class PasswordInformationMenu extends MenuWithPasswordListAndPasswordToolsFactor
         items.add(new DeletePasswordItem("Delete Password", password, passwordList, passwordToolsFactory));
         items.add(new AnalyzePasswordItem("Analyze password", password.getPassword(), passwordList, passwordToolsFactory));
         items.add(new PasswordsViewMenu("Back", passwordList, passwordToolsFactory));
-        items.add(new MainMenu("Main Menu", passwordList, passwordToolsFactory));
+        items.add(new MainMenuItem("Main Menu", passwordList, passwordToolsFactory));
         items.add(new ExitItem("Exit"));
     }
     @Override
