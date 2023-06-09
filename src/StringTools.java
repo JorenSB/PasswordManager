@@ -1,5 +1,6 @@
 public class StringTools {
     StringTools() {}
+
     protected int countCaps(String pass) {
         int caps = 0;
         for (int i = 0; i < pass.length(); i++) {
@@ -9,6 +10,7 @@ public class StringTools {
         }
         return caps;
     }
+
     protected int countNums(String pass) {
         int nums = 0;
         for (int i = 0; i < pass.length(); i++) {
@@ -18,6 +20,7 @@ public class StringTools {
         }
         return nums;
     }
+
     protected int countNonLetterChars(String pass) {
         int nonLetterChars = 0;
         for (int i = 0; i < pass.length(); i++) {
@@ -27,6 +30,7 @@ public class StringTools {
         }
         return nonLetterChars;
     }
+
     protected int countSpecialChars(String pass) {
         int specialChars = 0;
         for (int i = 0; i < pass.length(); i++) {

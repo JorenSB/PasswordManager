@@ -21,6 +21,7 @@ public class UserInput {
         }
         return input;
     }
+
     public static String getStringInput() {
         Scanner sc = new Scanner(System.in);
         String input = "";

@@ -6,8 +6,8 @@ public interface PasswordWriter {
     ArrayList<Password> getPasswords();
 }
 abstract class PasswordWriterExtension implements PasswordWriter {
-    protected final File filename;
+    protected final File FILENAME;
     public PasswordWriterExtension(String filename) {
-        this.filename = new File(filename);
+        this.FILENAME = new File(filename);
     }
 }
